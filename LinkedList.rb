@@ -21,6 +21,16 @@ class LinkedList
         @head = node
         @tail = node
     end
+
+    def find_appropriate_node(index)
+        node = @head
+        current_index = 0
+        until current_index == index
+            current_index += 1
+            node = node.next_node
+        end
+        return node
+    end
         
     def append(value)
         node = Node.new(value)
@@ -61,12 +71,7 @@ class LinkedList
 
     def at(index)
         if (/^\d$/ === index.to_s) && (index < self.size)
-            current_index = 0
-            node = @head
-            until current_index == index
-                current_index += 1
-                node = node.next_node
-            end
+            node = find_appropriate_node(index)
             node.value
         else
             return "Incorrect index!"
@@ -116,13 +121,7 @@ class LinkedList
 
     def insert_at(value, index)
         if (/^\d$/ === index.to_s) && (index < self.size)
-            node = @head
-            current_index = 0
-            until current_index == index
-                current_index += 1
-                node = node.next_node
-            end
-            
+            node = find_appropriate_node(index)            
             if node == @head
                 prepend(value)
             elsif node == @tail
@@ -136,6 +135,22 @@ class LinkedList
         else
             return puts "Incorrect index!"
         end
+    end
+
+    def remove_at(index)
+        if (/^\d$/ === index.to_s) && (index < self.size)
+            node = find_appropriate_node(index)
+            if node == @head
+                @head = node.next_node
+            elsif node == @tail
+                pop
+            else
+                previous_node = find_appropriate_node(index - 1)
+                previous_node.next_node = node.next_node 
+            end
+        else
+            return puts "Incorrect index!"
+        end 
     end
 
 end
@@ -179,3 +194,9 @@ puts list.to_s # => ( b ) -> ( 10 ) -> ( 23 ) -> ( 69 ) -> ( a ) -> nil
 list.append(16)
 list.prepend("c")
 puts list.to_s # => ( c ) -> ( b ) -> ( 10 ) -> ( 23 ) -> ( 69 ) -> ( a ) -> ( 16 ) -> nil
+list.remove_at(0) 
+puts list.to_s # => removed "c"
+list.remove_at(5)
+puts list.to_s # => removed 16
+list.remove_at(2)
+puts list.to_s # => removed 23

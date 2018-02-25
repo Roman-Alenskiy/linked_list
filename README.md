@@ -3,13 +3,14 @@ This is implementation of Linked list on Ruby
 
 
 # Notes:
+
 ### Clasess:
 
 + LinkedList class, which will represent the full list.
 + Node class, containing a @value and @next_node attrs.
 
 
-Methods:
+### Methods:
 
 + #append adds a new node to the end of the list
 + #prepend adds a new node to the start of the list
@@ -22,4 +23,9 @@ Methods:
 + #find returns the index of the node containing data, or nil if not found.
 + #to_s represent your LinkedList objects as strings, so you can print them out and preview them in the console. The format should be: ( data ) -> ( data ) -> ( data ) -> nil
 + #insert_at that inserts the node at the given index
-+ #remove_at that removes the node at the given index. (You will need to update the links of your nodes in the list when you remove a node.)
++ #remove_at that removes the node at the given index
+
+### Auxiliary methods:
+
++ #push_first_value for #append, #prepend
++ #find_appropriate_node for #at, #insert_at, #remove_at
