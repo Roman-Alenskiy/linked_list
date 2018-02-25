@@ -4,7 +4,7 @@ This is implementation of Linked list on Ruby
 
 # Notes:
 
-### Clasess:
+### Classes:
 
 + LinkedList class, which will represent the full list.
 + Node class, containing a @value and @next_node attrs.
